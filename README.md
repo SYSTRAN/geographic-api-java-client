@@ -1,5 +1,5 @@
 # Systran Geographic Java Client Library.
-This is a Java implementation of the [Systran Geographic](https://api-platform-stag.systran.net/reference/geographic) Client Library.
+This is a Java implementation of the [Systran Geographic](https://platform.systran.net/reference/geographic) Client Library.
 This client is a standard Maven project.
 
 ## Compile
