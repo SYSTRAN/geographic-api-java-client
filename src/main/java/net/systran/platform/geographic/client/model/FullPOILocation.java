@@ -16,43 +16,45 @@
 
 package net.systran.platform.geographic.client.model;
 
-import net.systran.platform.geographic.client.model.FullPOI;
-import net.systran.platform.geographic.client.model.ErrorResponse;
+import net.systran.platform.geographic.client.model.POIAddress;
+import net.systran.platform.geographic.client.model.FullPosition;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-@ApiModel(description = "")
-public class PoiDetailsResponse  {
+/**
+ * Location
+ **/
+@ApiModel(description = "Location")
+public class FullPOILocation  {
   
-  private ErrorResponse error = null;
-  private FullPOI result = null;
-
-  
-  /**
-   * Error at request level
-   **/
-  @ApiModelProperty(value = "Error at request level")
-  @JsonProperty("error")
-  public ErrorResponse getError() {
-    return error;
-  }
-  public void setError(ErrorResponse error) {
-    this.error = error;
-  }
+  private FullPosition position = null;
+  private POIAddress address = null;
 
   
   /**
-   * Full POI data
+   * Position defined by coordinates and type
    **/
-  @ApiModelProperty(required = true, value = "Full POI data")
-  @JsonProperty("result")
-  public FullPOI getResult() {
-    return result;
+  @ApiModelProperty(required = true, value = "Position defined by coordinates and type")
+  @JsonProperty("position")
+  public FullPosition getPosition() {
+    return position;
   }
-  public void setResult(FullPOI result) {
-    this.result = result;
+  public void setPosition(FullPosition position) {
+    this.position = position;
+  }
+
+  
+  /**
+   * Address
+   **/
+  @ApiModelProperty(value = "Address")
+  @JsonProperty("address")
+  public POIAddress getAddress() {
+    return address;
+  }
+  public void setAddress(POIAddress address) {
+    this.address = address;
   }
 
   
@@ -60,10 +62,10 @@ public class PoiDetailsResponse  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PoiDetailsResponse {\n");
+    sb.append("class FullPOILocation {\n");
     
-    sb.append("  error: ").append(error).append("\n");
-    sb.append("  result: ").append(result).append("\n");
+    sb.append("  position: ").append(position).append("\n");
+    sb.append("  address: ").append(address).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

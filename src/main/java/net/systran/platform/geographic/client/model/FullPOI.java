@@ -18,11 +18,11 @@ package net.systran.platform.geographic.client.model;
 
 import net.systran.platform.geographic.client.model.Description;
 import net.systran.platform.geographic.client.model.OpeningHours;
+import net.systran.platform.geographic.client.model.FullPOILocation;
 import net.systran.platform.geographic.client.model.Contact;
 import net.systran.platform.geographic.client.model.Review;
 import net.systran.platform.geographic.client.model.Booking;
 import java.util.*;
-import net.systran.platform.geographic.client.model.FullLocation;
 import net.systran.platform.geographic.client.model.Photo;
 
 import io.swagger.annotations.*;
@@ -35,7 +35,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public class FullPOI  {
   
   private String id = null;
-  private FullLocation location = null;
+  private FullPOILocation location = null;
   private String name = null;
   private List<String> types = new ArrayList<String>() ;
   private Integer rating = null;
@@ -68,10 +68,10 @@ public class FullPOI  {
    **/
   @ApiModelProperty(required = true, value = "Location")
   @JsonProperty("location")
-  public FullLocation getLocation() {
+  public FullPOILocation getLocation() {
     return location;
   }
-  public void setLocation(FullLocation location) {
+  public void setLocation(FullPOILocation location) {
     this.location = location;
   }
 
@@ -103,9 +103,9 @@ public class FullPOI  {
 
   
   /**
-   * Rating
+   * Rating (from 1 to 5)
    **/
-  @ApiModelProperty(value = "Rating")
+  @ApiModelProperty(value = "Rating (from 1 to 5)")
   @JsonProperty("rating")
   public Integer getRating() {
     return rating;
@@ -116,9 +116,9 @@ public class FullPOI  {
 
   
   /**
-   * Price Level
+   * Price Level (from 0 to 3)
    **/
-  @ApiModelProperty(value = "Price Level")
+  @ApiModelProperty(value = "Price Level (from 0 to 3)")
   @JsonProperty("priceLevel")
   public Integer getPriceLevel() {
     return priceLevel;
@@ -181,9 +181,9 @@ public class FullPOI  {
 
   
   /**
-   * POI
+   * URL
    **/
-  @ApiModelProperty(value = "POI")
+  @ApiModelProperty(value = "URL")
   @JsonProperty("url")
   public String getUrl() {
     return url;

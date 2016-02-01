@@ -335,48 +335,50 @@ public class ApiClient {
    * @return The deserialized Java object
    */
   public Object deserialize(ClientResponse httpResponse, String containerType, Class cls) throws ApiException {
+    String contentType = "";
     if (httpResponse.getHeaders() != null) {
-      String contentType = httpResponse.getHeaders().getFirst("Content-Type");
-      if (contentType != null && contentType.contains("multipart/mixed")) {
-        // do multipart parser
-        contentType = contentType.replace("Content-Type: ", "");
-        MimeTokenStream mts = new MimeTokenStream();
-        mts.parseHeadless(httpResponse.getEntityInputStream(), contentType);
-        String partName = "";
-        MultipartResponse multipartResponse = new MultipartResponse();
-        try {
-          for (EntityState state = mts.getState() ; state != EntityState.T_END_OF_STREAM ; state = mts.next()) {
-            if (state == EntityState.T_FIELD) {
-              // System.out.println("Header field detected: " + mts.getField().getName() + " : " + mts.getField().getBody());
-              if (mts.getField().getName().equals("part-name"))
-                partName = mts.getField().getBody();
-            } else if (state == EntityState.T_BODY) {
-              // System.out.println("Body detected " + partName);
-              // System.out.println("Contents = " + mts.getInputStream());
-              // System.out.println("Header data = " + mts.getBodyDescriptor());
-              if (partName.equals("detectedLanguage")) {
-                multipartResponse = JsonUtil.getJsonMapper().readValue(mts.getInputStream(), MultipartResponse.class);
-              } else if (partName.equals("source")) {
-                multipartResponse.setSource(mts.getInputStream());
-              } else {
-                multipartResponse.setOutput(mts.getInputStream());
-              }
-
-              partName = "";
-            }
-          }
-        } catch (MimeException e) {
-          e.printStackTrace();
-        } catch (IOException e) {
-          e.printStackTrace();
-        }
-
-        return multipartResponse;
-      }
+      contentType = httpResponse.getHeaders().getFirst("Content-Type");
     }
 
-    if (InputStream.class.equals(cls)) {
+    if (contentType == null || (!contentType.contains("multipart/mixed") && !contentType.contains("application/json"))) {
       return httpResponse.getEntityInputStream();
+    }
+
+    if (contentType.contains("multipart/mixed")) {
+      // do multipart parser
+      contentType = contentType.replace("Content-Type: ", "");
+      MimeTokenStream mts = new MimeTokenStream();
+      mts.parseHeadless(httpResponse.getEntityInputStream(), contentType);
+      String partName = "";
+      MultipartResponse multipartResponse = new MultipartResponse();
+      try {
+        for (EntityState state = mts.getState() ; state != EntityState.T_END_OF_STREAM ; state = mts.next()) {
+          if (state == EntityState.T_FIELD) {
+            // System.out.println("Header field detected: " + mts.getField().getName() + " : " + mts.getField().getBody());
+            if (mts.getField().getName().equals("part-name"))
+              partName = mts.getField().getBody();
+          } else if (state == EntityState.T_BODY) {
+            // System.out.println("Body detected " + partName);
+            // System.out.println("Contents = " + mts.getInputStream());
+            // System.out.println("Header data = " + mts.getBodyDescriptor());
+            if (partName.equals("detectedLanguage")) {
+              multipartResponse = JsonUtil.getJsonMapper().readValue(mts.getInputStream(), MultipartResponse.class);
+            } else if (partName.equals("source")) {
+              multipartResponse.setSource(mts.getInputStream());
+            } else {
+              multipartResponse.setOutput(mts.getInputStream());
+            }
+
+            partName = "";
+          }
+        }
+      } catch (MimeException e) {
+        e.printStackTrace();
+      } catch (IOException e) {
+        e.printStackTrace();
+      }
+
+      return multipartResponse;
     }
 
     if (null != containerType) {

@@ -16,20 +16,18 @@
 
 package net.systran.platform.geographic.client.model;
 
-import java.util.*;
+import net.systran.platform.geographic.client.model.FullInspiration;
 import net.systran.platform.geographic.client.model.ErrorResponse;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-/**
- * Response of a Supported languages request
- **/
-@ApiModel(description = "Response of a Supported languages request")
-public class SupportedLanguagesResponse  {
+
+@ApiModel(description = "")
+public class InspirationDetailsResponse  {
   
   private ErrorResponse error = null;
-  private List<String> languages = new ArrayList<String>() ;
+  private FullInspiration result = null;
 
   
   /**
@@ -46,15 +44,15 @@ public class SupportedLanguagesResponse  {
 
   
   /**
-   * Array of supported languages
+   * Full Inspiration data
    **/
-  @ApiModelProperty(required = true, value = "Array of supported languages")
-  @JsonProperty("languages")
-  public List<String> getLanguages() {
-    return languages;
+  @ApiModelProperty(required = true, value = "Full Inspiration data")
+  @JsonProperty("result")
+  public FullInspiration getResult() {
+    return result;
   }
-  public void setLanguages(List<String> languages) {
-    this.languages = languages;
+  public void setResult(FullInspiration result) {
+    this.result = result;
   }
 
   
@@ -62,10 +60,10 @@ public class SupportedLanguagesResponse  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class SupportedLanguagesResponse {\n");
+    sb.append("class InspirationDetailsResponse {\n");
     
     sb.append("  error: ").append(error).append("\n");
-    sb.append("  languages: ").append(languages).append("\n");
+    sb.append("  result: ").append(result).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

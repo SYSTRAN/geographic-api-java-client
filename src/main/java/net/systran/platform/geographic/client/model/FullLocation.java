@@ -17,6 +17,7 @@
 package net.systran.platform.geographic.client.model;
 
 import net.systran.platform.geographic.client.model.Address;
+import net.systran.platform.geographic.client.model.Boundaries;
 import net.systran.platform.geographic.client.model.FullPosition;
 
 import io.swagger.annotations.*;
@@ -28,8 +29,22 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @ApiModel(description = "Location")
 public class FullLocation  {
   
+  private Boundaries boundaries = null;
   private FullPosition position = null;
   private Address address = null;
+
+  
+  /**
+   * Boundaries defined by a polygon composed of a list of coordinates
+   **/
+  @ApiModelProperty(value = "Boundaries defined by a polygon composed of a list of coordinates")
+  @JsonProperty("boundaries")
+  public Boundaries getBoundaries() {
+    return boundaries;
+  }
+  public void setBoundaries(Boundaries boundaries) {
+    this.boundaries = boundaries;
+  }
 
   
   /**
@@ -64,6 +79,7 @@ public class FullLocation  {
     StringBuilder sb = new StringBuilder();
     sb.append("class FullLocation {\n");
     
+    sb.append("  boundaries: ").append(boundaries).append("\n");
     sb.append("  position: ").append(position).append("\n");
     sb.append("  address: ").append(address).append("\n");
     sb.append("}\n");

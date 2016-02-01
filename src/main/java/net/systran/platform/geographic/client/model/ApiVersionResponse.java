@@ -16,43 +16,26 @@
 
 package net.systran.platform.geographic.client.model;
 
-import net.systran.platform.geographic.client.model.FullPOI;
-import net.systran.platform.geographic.client.model.ErrorResponse;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class PoiDetailsResponse  {
+public class ApiVersionResponse  {
   
-  private ErrorResponse error = null;
-  private FullPOI result = null;
+  private String version = null;
 
   
   /**
-   * Error at request level
    **/
-  @ApiModelProperty(value = "Error at request level")
-  @JsonProperty("error")
-  public ErrorResponse getError() {
-    return error;
+  @ApiModelProperty(value = "")
+  @JsonProperty("version")
+  public String getVersion() {
+    return version;
   }
-  public void setError(ErrorResponse error) {
-    this.error = error;
-  }
-
-  
-  /**
-   * Full POI data
-   **/
-  @ApiModelProperty(required = true, value = "Full POI data")
-  @JsonProperty("result")
-  public FullPOI getResult() {
-    return result;
-  }
-  public void setResult(FullPOI result) {
-    this.result = result;
+  public void setVersion(String version) {
+    this.version = version;
   }
 
   
@@ -60,10 +43,9 @@ public class PoiDetailsResponse  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PoiDetailsResponse {\n");
+    sb.append("class ApiVersionResponse {\n");
     
-    sb.append("  error: ").append(error).append("\n");
-    sb.append("  result: ").append(result).append("\n");
+    sb.append("  version: ").append(version).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

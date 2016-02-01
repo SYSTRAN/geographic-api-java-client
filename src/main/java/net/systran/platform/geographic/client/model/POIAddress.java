@@ -16,7 +16,7 @@
 
 package net.systran.platform.geographic.client.model;
 
-import net.systran.platform.geographic.client.model.AddressComponents;
+import net.systran.platform.geographic.client.model.POIAddressComponents;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -25,10 +25,11 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Address
  **/
 @ApiModel(description = "Address")
-public class Address  {
+public class POIAddress  {
   
-  private AddressComponents components = null;
+  private POIAddressComponents components = null;
   private String formatted = null;
+  private String vicinity = null;
 
   
   /**
@@ -36,10 +37,10 @@ public class Address  {
    **/
   @ApiModelProperty(value = "Address components")
   @JsonProperty("components")
-  public AddressComponents getComponents() {
+  public POIAddressComponents getComponents() {
     return components;
   }
-  public void setComponents(AddressComponents components) {
+  public void setComponents(POIAddressComponents components) {
     this.components = components;
   }
 
@@ -57,14 +58,28 @@ public class Address  {
   }
 
   
+  /**
+   * Vicinity
+   **/
+  @ApiModelProperty(value = "Vicinity")
+  @JsonProperty("vicinity")
+  public String getVicinity() {
+    return vicinity;
+  }
+  public void setVicinity(String vicinity) {
+    this.vicinity = vicinity;
+  }
+
+  
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Address {\n");
+    sb.append("class POIAddress {\n");
     
     sb.append("  components: ").append(components).append("\n");
     sb.append("  formatted: ").append(formatted).append("\n");
+    sb.append("  vicinity: ").append(vicinity).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

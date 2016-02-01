@@ -17,42 +17,43 @@
 package net.systran.platform.geographic.client.model;
 
 import java.util.*;
-import net.systran.platform.geographic.client.model.ErrorResponse;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
-
-@ApiModel(description = "")
-public class PoiTypesResponse  {
+/**
+ * Boundaries defined by a polygon composed of a list of coordinates
+ **/
+@ApiModel(description = "Boundaries defined by a polygon composed of a list of coordinates")
+public class Boundaries  {
   
-  private ErrorResponse error = null;
-  private List<String> poiTypes = new ArrayList<String>() ;
-
-  
-  /**
-   * Error at request level
-   **/
-  @ApiModelProperty(value = "Error at request level")
-  @JsonProperty("error")
-  public ErrorResponse getError() {
-    return error;
-  }
-  public void setError(ErrorResponse error) {
-    this.error = error;
-  }
+  private List<Double> coordinates = new ArrayList<Double>() ;
+  private String type = null;
 
   
   /**
-   * POI types
+   * Coordinates defined by latitude and longitude
    **/
-  @ApiModelProperty(required = true, value = "POI types")
-  @JsonProperty("poiTypes")
-  public List<String> getPoiTypes() {
-    return poiTypes;
+  @ApiModelProperty(value = "Coordinates defined by latitude and longitude")
+  @JsonProperty("coordinates")
+  public List<Double> getCoordinates() {
+    return coordinates;
   }
-  public void setPoiTypes(List<String> poiTypes) {
-    this.poiTypes = poiTypes;
+  public void setCoordinates(List<Double> coordinates) {
+    this.coordinates = coordinates;
+  }
+
+  
+  /**
+   * The type of coordinates
+   **/
+  @ApiModelProperty(value = "The type of coordinates")
+  @JsonProperty("type")
+  public String getType() {
+    return type;
+  }
+  public void setType(String type) {
+    this.type = type;
   }
 
   
@@ -60,10 +61,10 @@ public class PoiTypesResponse  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PoiTypesResponse {\n");
+    sb.append("class Boundaries {\n");
     
-    sb.append("  error: ").append(error).append("\n");
-    sb.append("  poiTypes: ").append(poiTypes).append("\n");
+    sb.append("  coordinates: ").append(coordinates).append("\n");
+    sb.append("  type: ").append(type).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

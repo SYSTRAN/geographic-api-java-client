@@ -16,21 +16,21 @@
 
 package net.systran.platform.geographic.client.model;
 
-import net.systran.platform.geographic.client.model.Inspiration;
 import java.util.*;
 import net.systran.platform.geographic.client.model.ErrorResponse;
+import net.systran.platform.geographic.client.model.Destination;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class InspirationResponse  {
+public class DestinationResponse  {
   
   private ErrorResponse error = null;
   private Integer total = null;
   private Integer offset = null;
-  private List<Inspiration> inspirations = new ArrayList<Inspiration>() ;
+  private List<Destination> destinations = new ArrayList<Destination>() ;
 
   
   /**
@@ -73,15 +73,15 @@ public class InspirationResponse  {
 
   
   /**
-   * Array of inspirations
+   * Array of destinations
    **/
-  @ApiModelProperty(required = true, value = "Array of inspirations")
-  @JsonProperty("inspirations")
-  public List<Inspiration> getInspirations() {
-    return inspirations;
+  @ApiModelProperty(required = true, value = "Array of destinations")
+  @JsonProperty("destinations")
+  public List<Destination> getDestinations() {
+    return destinations;
   }
-  public void setInspirations(List<Inspiration> inspirations) {
-    this.inspirations = inspirations;
+  public void setDestinations(List<Destination> destinations) {
+    this.destinations = destinations;
   }
 
   
@@ -89,12 +89,12 @@ public class InspirationResponse  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class InspirationResponse {\n");
+    sb.append("class DestinationResponse {\n");
     
     sb.append("  error: ").append(error).append("\n");
     sb.append("  total: ").append(total).append("\n");
     sb.append("  offset: ").append(offset).append("\n");
-    sb.append("  inspirations: ").append(inspirations).append("\n");
+    sb.append("  destinations: ").append(destinations).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

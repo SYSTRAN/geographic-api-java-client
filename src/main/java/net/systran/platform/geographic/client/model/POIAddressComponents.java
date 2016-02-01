@@ -24,13 +24,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * Address components
  **/
 @ApiModel(description = "Address components")
-public class AddressComponents  {
+public class POIAddressComponents  {
   
   private String country = null;
   private String state = null;
   private String county = null;
   private String city = null;
   private String postalCode = null;
+  private String street = null;
 
   
   /**
@@ -98,17 +99,31 @@ public class AddressComponents  {
   }
 
   
+  /**
+   * Street
+   **/
+  @ApiModelProperty(value = "Street")
+  @JsonProperty("street")
+  public String getStreet() {
+    return street;
+  }
+  public void setStreet(String street) {
+    this.street = street;
+  }
+
+  
 
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AddressComponents {\n");
+    sb.append("class POIAddressComponents {\n");
     
     sb.append("  country: ").append(country).append("\n");
     sb.append("  state: ").append(state).append("\n");
     sb.append("  county: ").append(county).append("\n");
     sb.append("  city: ").append(city).append("\n");
     sb.append("  postalCode: ").append(postalCode).append("\n");
+    sb.append("  street: ").append(street).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

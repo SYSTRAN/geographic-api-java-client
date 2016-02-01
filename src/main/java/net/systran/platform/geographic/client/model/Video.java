@@ -26,33 +26,33 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @ApiModel(description = "Video")
 public class Video  {
   
-  private String label = null;
-  private String ref = null;
+  private String title = null;
+  private String url = null;
 
   
   /**
    * Label
    **/
   @ApiModelProperty(value = "Label")
-  @JsonProperty("label")
-  public String getLabel() {
-    return label;
+  @JsonProperty("title")
+  public String getTitle() {
+    return title;
   }
-  public void setLabel(String label) {
-    this.label = label;
+  public void setTitle(String title) {
+    this.title = title;
   }
 
   
   /**
-   * Reference
+   * URL
    **/
-  @ApiModelProperty(required = true, value = "Reference")
-  @JsonProperty("ref")
-  public String getRef() {
-    return ref;
+  @ApiModelProperty(required = true, value = "URL")
+  @JsonProperty("url")
+  public String getUrl() {
+    return url;
   }
-  public void setRef(String ref) {
-    this.ref = ref;
+  public void setUrl(String url) {
+    this.url = url;
   }
 
   
@@ -62,8 +62,8 @@ public class Video  {
     StringBuilder sb = new StringBuilder();
     sb.append("class Video {\n");
     
-    sb.append("  label: ").append(label).append("\n");
-    sb.append("  ref: ").append(ref).append("\n");
+    sb.append("  title: ").append(title).append("\n");
+    sb.append("  url: ").append(url).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

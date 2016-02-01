@@ -16,43 +16,41 @@
 
 package net.systran.platform.geographic.client.model;
 
-import net.systran.platform.geographic.client.model.FullPOI;
-import net.systran.platform.geographic.client.model.ErrorResponse;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
 @ApiModel(description = "")
-public class PoiDetailsResponse  {
+public class ErrorResponse  {
   
-  private ErrorResponse error = null;
-  private FullPOI result = null;
+  private String message = null;
+  private Object info = null;
 
   
   /**
-   * Error at request level
+   * Readable description of the error
    **/
-  @ApiModelProperty(value = "Error at request level")
-  @JsonProperty("error")
-  public ErrorResponse getError() {
-    return error;
+  @ApiModelProperty(required = true, value = "Readable description of the error")
+  @JsonProperty("message")
+  public String getMessage() {
+    return message;
   }
-  public void setError(ErrorResponse error) {
-    this.error = error;
+  public void setMessage(String message) {
+    this.message = message;
   }
 
   
   /**
-   * Full POI data
+   * Additional information about the error
    **/
-  @ApiModelProperty(required = true, value = "Full POI data")
-  @JsonProperty("result")
-  public FullPOI getResult() {
-    return result;
+  @ApiModelProperty(value = "Additional information about the error")
+  @JsonProperty("info")
+  public Object getInfo() {
+    return info;
   }
-  public void setResult(FullPOI result) {
-    this.result = result;
+  public void setInfo(Object info) {
+    this.info = info;
   }
 
   
@@ -60,10 +58,10 @@ public class PoiDetailsResponse  {
   @Override
   public String toString()  {
     StringBuilder sb = new StringBuilder();
-    sb.append("class PoiDetailsResponse {\n");
+    sb.append("class ErrorResponse {\n");
     
-    sb.append("  error: ").append(error).append("\n");
-    sb.append("  result: ").append(result).append("\n");
+    sb.append("  message: ").append(message).append("\n");
+    sb.append("  info: ").append(info).append("\n");
     sb.append("}\n");
     return sb.toString();
   }

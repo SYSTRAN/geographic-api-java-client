@@ -18,6 +18,7 @@ package net.systran.platform.geographic.client.model;
 
 import net.systran.platform.geographic.client.model.LitePOI;
 import java.util.*;
+import net.systran.platform.geographic.client.model.ErrorResponse;
 
 import io.swagger.annotations.*;
 import com.fasterxml.jackson.annotation.JsonProperty;
@@ -26,9 +27,23 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 @ApiModel(description = "")
 public class PoiResponse  {
   
+  private ErrorResponse error = null;
   private Integer total = null;
   private Integer offset = null;
   private List<LitePOI> pointsOfInterest = new ArrayList<LitePOI>() ;
+
+  
+  /**
+   * Error at request level
+   **/
+  @ApiModelProperty(value = "Error at request level")
+  @JsonProperty("error")
+  public ErrorResponse getError() {
+    return error;
+  }
+  public void setError(ErrorResponse error) {
+    this.error = error;
+  }
 
   
   /**
@@ -76,6 +91,7 @@ public class PoiResponse  {
     StringBuilder sb = new StringBuilder();
     sb.append("class PoiResponse {\n");
     
+    sb.append("  error: ").append(error).append("\n");
     sb.append("  total: ").append(total).append("\n");
     sb.append("  offset: ").append(offset).append("\n");
     sb.append("  pointsOfInterest: ").append(pointsOfInterest).append("\n");

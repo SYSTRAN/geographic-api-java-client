@@ -103,9 +103,9 @@ public class LitePOI  {
 
   
   /**
-   * Rating
+   * Rating (from 1 to 5)
    **/
-  @ApiModelProperty(value = "Rating")
+  @ApiModelProperty(value = "Rating (from 1 to 5)")
   @JsonProperty("rating")
   public Integer getRating() {
     return rating;
@@ -116,9 +116,9 @@ public class LitePOI  {
 
   
   /**
-   * Price Level
+   * Price Level (from 0 to 3)
    **/
-  @ApiModelProperty(value = "Price Level")
+  @ApiModelProperty(value = "Price Level (from 0 to 3)")
   @JsonProperty("priceLevel")
   public Integer getPriceLevel() {
     return priceLevel;

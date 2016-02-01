@@ -70,9 +70,9 @@ public class Review  {
 
   
   /**
-   * Rating
+   * Rating (from 1 to 5)
    **/
-  @ApiModelProperty(value = "Rating")
+  @ApiModelProperty(value = "Rating (from 1 to 5)")
   @JsonProperty("rating")
   public Integer getRating() {
     return rating;
